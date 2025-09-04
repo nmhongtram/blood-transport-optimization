@@ -32,6 +32,9 @@ class EVRPTW:
         self.depot = 1
         self.customer_ids = np.array([id for id in self.demands.keys() if id != self.depot])
         self.station_ids = np.array([node["id"] for node in self.nodes if node["demand"] == 0 and node["id"] != self.depot])
+
+        self.w_distance = 1
+        self.w_fleet_size = 1500
    
 
 
@@ -241,7 +244,7 @@ class EVRPTW:
                 current_distance += self.distances[sub_route[i]-1][sub_route[i + 1]-1] 
         
             total_distance += current_distance
-        return total_distance
+        return total_distance + ((self.w_fleet_size/self.w_distance) * len(indiv.sub_routes))
     
 
     def calc_ob2(self, indiv):
