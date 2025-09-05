@@ -1,5 +1,10 @@
+# A function to read EVRPTW benchmark data from a text file and return structured data in json format
+# Based on the format of EVRP-TW benchmark dataset - originally introduced by Solomon (1987) and extended by Goeke (2019)
+
+
 import numpy as np
 import json
+
 
 def read_evrptw_data(file_path):
     data = {

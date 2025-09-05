@@ -1,3 +1,13 @@
+# Implementation of EVRP-BSS-TW problem in blood transportation
+# Electric Vehicle here refers to electric motorcycles with swappable batery (EMSB)
+# - 2 objectives: minimizing cost (total distance + num of vehicles) and customers' waiting time
+# - Population initialization using a probabilistic savings algorithm with p=0.2
+# - Crossover: OX, PMX, CX
+# - Mutation: swap, inverse, insert
+# - Local search: 3-opt (for routes with more than 3 customers) and 2-opt (for routes with only 3 customers)
+# - Repair: greedy insertion heuristic
+
+
 import numpy as np
 
 
@@ -52,8 +62,8 @@ class EVRPTW:
 
         # Step 1: Compute savings
         savings_list = []
-        customers = list(self.customer_ids)  # Danh sách khách hàng
-        np.random.shuffle(customers)            # Xáo trộn ngẫu nhiên
+        customers = list(self.customer_ids) 
+        np.random.shuffle(customers)           
         for i in customers:
             for j in customers:
                 if i != j:
@@ -529,7 +539,6 @@ class EVRPTW:
         return Individual(final_routes, np.array(customers))
     
 
-    # Vì chạy rất lâu đối với số node lớn nên chỉ áp dụng sau 10 generation 
     def optimize_3opt(self, route):
         """
         Perform 3-opt optimization on a given sub-route, and use 2-opt for routes with only 3 customers.
@@ -623,8 +632,6 @@ class EVRPTW:
 
         # Step 3: Return the optimized route
         return best_route
-
-
 
 
 

@@ -1,7 +1,11 @@
+# Implementation of Hybrid Multi-Objective Evolutionary Algorithms
+# Modified from Non-dominated Sorting Genetic Algorithm II (NSGA-II) (Deb et al., 2002)
+# and Strength Pareto Evolutionary Algorithm 2 (SPEA2) (Zitzler et al., 2001)
+
+
 import numpy as np
 import copy
     
-
 
 class NSGA2:
     def __init__(self, problem, population_size=50, num_generations=20, mutation_rate=0.1, crossover_rate=0.9, mutation_type="swap", crossover_type="OX"):
